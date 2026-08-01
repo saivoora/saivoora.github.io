@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sai V. | CyberSecurity | SRE | DevOps | AI Engineer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            805: '#0b1329',
+                            800: '#0f172a',
+                            900: '#090d1a',
+                            950: '#050711'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #090d1a; color: #f8fafc; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .timeline-line::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, transparent, #06b6d4, #10b981, transparent);
+            transform: translateX(-50%);
+        }
+        @media (max-width: 768px) {
+            .timeline-line::before { left: 20px; transform: none; }
+            .timeline-card { width: calc(100% - 50px); margin-left: 50px !important; }
+        }
+        .fade-in-section { transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: none; }
+        .cursor-blink { animation: blink 1s step-end infinite; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .terminal-output { white-space: pre-wrap; word-wrap: break-word; }
+        .glass { background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .migration-node { transition: all 0.3s; cursor: pointer; }
+        .migration-node:hover { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.5)); }
+        a:hover, button:hover { filter: drop-shadow(0 0 8px currentColor); }
+        .canvas-bg { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 0; pointer-events: none; opacity: 0.15; }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden pt-16">
+
+    <div class="relative min-h-screen">
+        <canvas id="neural-bg" class="canvas-bg"></canvas>
+
+        <!-- Navigation -->
+        <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+            <div class="glass max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/5 shadow-lg">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex-shrink-0 flex items-center gap-2">
+                        <i data-lucide="shield" class="h-6 w-6 text-cyan-400"></i>
+                        <span class="font-bold text-xl tracking-tight text-white font-mono">SAI_V.sh</span>
+                    </div>
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#about" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">About</a>
+                        <a href="#skills" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">Skills</a>
+                        <a href="#experience" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">Experience</a>
+                        <a href="#ai-projects" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">AI & Projects</a>
+                        <a href="#testimonials" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">Endorsements</a>
+                        <a href="#philosophy" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">Philosophy</a>
+                        <a href="#terminal" class="text-gray-300 hover:text-cyan-400 transition-colors text-sm font-medium">Terminal</a>
+                    </div>
+                    <div class="md:hidden flex items-center">
+                        <button class="text-gray-300 hover:text-white" id="mobile-menu-btn">
+                            <i data-lucide="menu" class="h-6 w-6"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden fixed top-16 left-0 w-full glass z-40 border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">About</a>
+                <a href="#skills" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">Skills</a>
+                <a href="#experience" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">Experience</a>
+                <a href="#ai-projects" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">AI Engineering</a>
+                <a href="#testimonials" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">Endorsements</a>
+                <a href="#philosophy" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">Philosophy</a>
+                <a href="#terminal" class="block px-3 py-2 text-base font-medium text-gray-300 hover:text-cyan-400 mobile-link">Terminal</a>
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section id="hero" class="relative min-h-screen flex items-center justify-center px-4 -mt-16">
+            <div class="text-center z-10 max-w-4xl pt-20">
+                <p class="text-cyan-400 font-mono mb-4 text-sm tracking-wider">// INITIALIZING ENTERPRISE PLATFORM ARCHITECT</p>
+                <h1 class="text-5xl md:text-8xl font-black text-white mb-6 tracking-tight">Sai V.</h1>
+                <h2 class="text-xl md:text-3xl text-gray-300 font-mono mb-8 h-12" id="typewriter"></h2>
+                <div class="inline-flex gap-4 mb-6">
+                    <span class="px-4 py-1.5 rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800 text-sm font-mono">Senior Middleware Administrator</span>
+                    <span class="px-4 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-sm font-mono">Senior Systems Engineer</span>
+                </div>
+
+                <p class="text-gray-400 max-w-2xl mx-auto mb-10 text-lg leading-relaxed">
+                    20+ years of enterprise IT experience. Bridging security-first **IAM & Cryptography** with high-availability **SRE, Production Support, DevOps**, and contemporary **AI Orchestration / Agentic Pipelines**.
+                </p>
+
+                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
+                    <div class="flex gap-4">
+                        <a href="mailto:saikumarvoora@gmail.com" class="p-3 bg-white/5 rounded-full hover:bg-cyan-500/20 text-gray-300 hover:text-cyan-400 transition-all group border border-white/5" title="Email Me">
+                            <i data-lucide="mail" class="h-6 w-6"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/saivoora" target="_blank" class="p-3 bg-white/5 rounded-full hover:bg-blue-500/20 text-gray-300 hover:text-blue-500 transition-all group border border-white/5 flex items-center gap-2" title="LinkedIn Profile">
+                            <i data-lucide="linkedin" class="h-6 w-6"></i>
+                            <span class="font-medium pr-1">LinkedIn</span>
+                        </a>
+                    </div>
+                    <a href="#terminal" class="px-6 py-3 bg-cyan-600/20 text-cyan-400 border border-cyan-500/50 rounded-full font-mono text-sm hover:bg-cyan-500 hover:text-white transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_20px_rgba(6,182,212,0.6)]">
+                        <i data-lucide="terminal" class="h-4 w-4"></i> RUN SAIVOORA-CLI.SH
+                    </a>
+                </div>
+
+                <a href="#about" class="inline-flex flex-col items-center text-gray-500 hover:text-cyan-400 transition-colors animate-bounce mt-10">
+                    <span class="text-xs font-mono mb-2">SCAN SYSTEMS</span>
+                    <i data-lucide="chevron-down" class="h-5 w-5"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Professional Summary -->
+        <section id="about" class="py-20 px-4 bg-navy-950/80 relative">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
+                    <span class="text-cyan-400 mr-3">01.</span> SYSTEM_OVERVIEW
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                    <div class="lg:col-span-2 space-y-6 text-gray-300 text-lg leading-relaxed">
+                        <p>
+                            I am an IT professional with <strong class="text-white">20+ years of enterprise experience</strong> specializing in Cybersecurity, IAM, Middleware, SRE, Production Support, DevOps, and AI Automation.
+                        </p>
+                        <p>
+                            I have supported mission-critical platforms serving millions of concurrent users. Spending <strong class="text-white">approximately 18 years supporting Bank of America</strong>, I understand how to manage complex configurations under rigorous regulatory control.
+                        </p>
+                        <p>
+                            A key differentiator of my career is promptness: **I have consistently delivered projects on time throughout my career** and never missed a major deadline. I am dedicated to solving difficult engineering problems, building resilient automation, and maintaining extreme service availability.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="glass p-6 rounded-xl text-center border-t-2 border-cyan-500">
+                            <div class="text-4xl font-bold text-white mb-2" id="count-exp">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-mono">Years Exp.</div>
+                        </div>
+                        <div class="glass p-6 rounded-xl text-center border-t-2 border-blue-500">
+                            <div class="text-4xl font-bold text-white mb-2" id="count-boa">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-mono">BofA Support</div>
+                        </div>
+                        <div class="glass p-6 rounded-xl text-center border-t-2 border-emerald-500">
+                            <div class="text-4xl font-bold text-white mb-2" id="count-mig">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-mono">Uptime SLA</div>
+                        </div>
+                        <div class="glass p-6 rounded-xl text-center border-t-2 border-purple-500">
+                            <div class="text-4xl font-bold text-white mb-2" id="count-cert">0</div>
+                            <div class="text-xs text-gray-400 uppercase tracking-widest font-mono">Certs</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Competencies -->
+        <section id="skills" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
+                    <span class="text-cyan-400 mr-3">02.</span> CAPABILITY_MATRIX
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Core 1 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-cyan-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="shield-check" class="h-6 w-6 text-cyan-400"></i>
+                            <h3 class="font-bold text-lg text-white">Cybersecurity & IAM</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Securing platforms through identity automation, least privilege, user provisioning, access audits, and authentication systems.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• IAM / LDAP Integrations</li>
+                            <li>• Access Reviews & Auditing</li>
+                            <li>• Multi-Factor Auth (MFA) / OAuth2</li>
+                            <li>• Privilege Access Hardening</li>
+                        </ul>
+                    </div>
+
+                    <!-- Core 2 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-emerald-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="server" class="h-6 w-6 text-emerald-400"></i>
+                            <h3 class="font-bold text-lg text-white">Middleware & Platform Eng.</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Decades of experience tuning and maintaining enterprise-scale WebSphere, JBoss EAP, Apache Tomcat, and WildFly servers.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• IBM WebSphere AS & IHS</li>
+                            <li>• JBoss EAP / WildFly / Tomcat</li>
+                            <li>• AMQ Artemis Messaging</li>
+                            <li>• Solr / JNDI / EJB Services</li>
+                        </ul>
+                    </div>
+
+                    <!-- Core 3 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-blue-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="activity" class="h-6 w-6 text-blue-400"></i>
+                            <h3 class="font-bold text-lg text-white">SRE & Production Support</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Maintaining SLA targets for high-volume architectures via active monitoring, GC profiling, disaster recovery, and incident triage.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• 24x7 Mission-Critical Support</li>
+                            <li>• Prometheus / Alerting</li>
+                            <li>• Thread/Heap Dump Analysis</li>
+                            <li>• Root Cause Analysis (RCA)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Core 4 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-purple-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="git-branch" class="h-6 w-6 text-purple-400"></i>
+                            <h3 class="font-bold text-lg text-white">DevOps & Cloud Architect</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Infrastructure-as-Code automation and cloud deployment architectures across AWS and Microsoft Azure platforms.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• AWS SAA / Azure Fundamentals</li>
+                            <li>• Jenkins CI/CD & GitHub</li>
+                            <li>• Docker / Kubernetes</li>
+                            <li>• Ansible & Shell Scripting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Core 5 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-orange-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="cpu" class="h-6 w-6 text-orange-400"></i>
+                            <h3 class="font-bold text-lg text-white">Java & Software Dev</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Engineered resilient back-ends using Java 17 and Spring Boot microservice design patterns with reactive operations.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• Spring Boot / Data / MVC</li>
+                            <li>• Spring WebFlux (Reactive)</li>
+                            <li>• MongoDB & SQL databases</li>
+                            <li>• Apache Kafka Event Pipelines</li>
+                        </ul>
+                    </div>
+
+                    <!-- Core 6 -->
+                    <div class="glass p-6 rounded-xl border border-white/5 hover:border-pink-500/50 transition-colors group">
+                        <div class="flex items-center gap-3 mb-6 border-b border-white/10 pb-4">
+                            <i data-lucide="sparkles" class="h-6 w-6 text-pink-400"></i>
+                            <h3 class="font-bold text-lg text-white">AI Engineering</h3>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-4">Orchestrating LLMs, building multi-agent autonomous loops, local inference platforms, and advanced workflow nodes.</p>
+                        <ul class="space-y-2 font-mono text-xs text-gray-300">
+                            <li>• Multi-agent workflows</li>
+                            <li>• GPT-5 / Claude Code / Gemini</li>
+                            <li>• n8n / Make Automation</li>
+                            <li>• Local LLM Infrastructure</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-8 flex flex-wrap gap-2 text-xs font-mono">
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">Java 17</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">PowerShell & Bash</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">Spring WebFlux</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">MongoDB</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">Prometheus</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">JBoss AMQ</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">OAuth2</span>
+                    <span class="px-3 py-1 bg-slate-800 rounded border border-slate-700">IBM HTTP Server</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section id="experience" class="py-20 px-4 bg-navy-950/80">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-16 flex items-center font-mono">
+                    <span class="text-cyan-400 mr-3">03.</span> WORK_HISTORY
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+
+                <div class="relative timeline-line pt-4 pb-4">
+                    <!-- Job 1 -->
+                    <div class="relative flex justify-between items-center w-full mb-16 md:flex-row-reverse">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="absolute z-10 w-6 h-6 bg-emerald-500 rounded-full md:left-1/2 left-5 -translate-x-1/2 border-4 border-navy-900 shadow-[0_0_10px_#10b981]"></div>
+                        <div class="timeline-card glass p-6 rounded-xl border border-white/5 w-full md:w-5/12 hover:border-emerald-500/50 transition-colors">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-white">Senior Security Analyst – IAM</h3>
+                                <span class="text-emerald-400 font-mono text-sm">2025 - Present</span>
+                            </div>
+                            <h4 class="text-gray-400 mb-4 flex items-center gap-2">JEA | Jacksonville, FL</h4>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-300 text-sm">
+                                <li>Manages Identity and Access Management systems (RBAC, provisioning, compliance).</li>
+                                <li>Administers GPOs, OUs and privileged reviews via Active Directory.</li>
+                                <li>Collaborates to implement Zero Trust baselines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative flex justify-between items-center w-full mb-16">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="absolute z-10 w-6 h-6 bg-purple-500 rounded-full md:left-1/2 left-5 -translate-x-1/2 border-4 border-navy-900 shadow-[0_0_10px_#a855f7]"></div>
+                        <div class="timeline-card glass p-6 rounded-xl border border-white/5 w-full md:w-5/12 hover:border-purple-500/50 transition-colors">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-white">Middleware & Vulnerability Analyst</h3>
+                                <span class="text-purple-400 font-mono text-sm">Jan 2025 - Apr 2025</span>
+                            </div>
+                            <h4 class="text-gray-400 mb-4 flex items-center gap-2">Truist | Remote</h4>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-300 text-sm">
+                                <li>Remediated JBoss EAP and WebSphere security vulnerabilities aligned to SLAs.</li>
+                                <li>Hardened configurations following standard CIS benchmarks.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="relative flex justify-between items-center w-full mb-16 md:flex-row-reverse">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="absolute z-10 w-6 h-6 bg-orange-500 rounded-full md:left-1/2 left-5 -translate-x-1/2 border-4 border-navy-900 shadow-[0_0_10px_#f97316]"></div>
+                        <div class="timeline-card glass p-6 rounded-xl border border-white/5 w-full md:w-5/12 hover:border-orange-500/50 transition-colors">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-white">Middleware System Admin</h3>
+                                <span class="text-orange-400 font-mono text-sm">Oct 2024 - Jan 2025</span>
+                            </div>
+                            <h4 class="text-gray-400 mb-4 flex items-center gap-2">Digital Risk | Orlando, FL</h4>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-300 text-sm">
+                                <li>Managed deployments, datasource configurations, and clustering for JBoss EAP / WildFly.</li>
+                                <li>Tuned GC parameters, resolved memory leaks, and managed resource pools.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="relative flex justify-between items-center w-full mb-16">
+                        <div class="hidden md:block w-5/12"></div>
+                        <div class="absolute z-10 w-6 h-6 bg-blue-500 rounded-full md:left-1/2 left-5 -translate-x-1/2 border-4 border-navy-900 shadow-[0_0_10px_#3b82f6]"></div>
+                        <div class="timeline-card glass p-6 rounded-xl border border-white/5 w-full md:w-5/12 hover:border-blue-500/50 transition-colors">
+                            <div class="flex justify-between items-start mb-2">
+                                <h3 class="font-bold text-xl text-white">Infrastructure Engineer / VP</h3>
+                                <span class="text-blue-400 font-mono text-sm">2007 - 2024</span>
+                            </div>
+                            <h4 class="text-gray-400 mb-4 flex items-center gap-2">Bank of America | Jacksonville, FL</h4>
+                            <p class="text-gray-300 text-sm mb-4"><strong>~18 years supporting the bank (Contractor & Full-Time VP role):</strong></p>
+                            <ul class="list-disc list-outside ml-4 space-y-2 text-gray-300 text-sm">
+                                <li>Led domain-mode JBoss EAP migrations from AS 4.x/5.x to EAP 6.x and 7.x across 50+ app suites.</li>
+                                <li>Developed Jenkins and Ansible automation to reduce release timelines by 40%.</li>
+                                <li>Managed parallel IBM WebSphere environments and cost-reduction migration initiatives.</li>
+                                <li>Provided Level-3 production triage for 24x7 systems serving millions of users.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Engineering & Projects -->
+        <section id="ai-projects" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
+                    <span class="text-pink-400 mr-3">04.</span> AI_ORCHESTRATION_LAB
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project 1 -->
+                    <div class="glass p-8 rounded-xl border border-white/5 hover:border-pink-500/50 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <i data-lucide="play" class="h-10 w-10 text-pink-400"></i>
+                                <span class="text-xs bg-pink-500/10 text-pink-400 px-2 py-1 rounded font-mono">ACTIVE DEPLOYMENT</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">CreatorOS</h3>
+                            <p class="text-gray-350 text-sm leading-relaxed mb-6">
+                                An end-to-end AI Content Production & Distribution Platform designed to orchestrate media assets dynamically. Runs high-level workflows spanning image, video, and voice synthesis models to automate creation pathways.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono border-t border-white/5 pt-4">
+                            <span class="text-pink-400">#Prompt-Engineering</span>
+                            <span class="text-pink-400">#Multi-Model-Workflows</span>
+                            <span class="text-pink-400">#Orchestration</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="glass p-8 rounded-xl border border-white/5 hover:border-pink-400/50 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start mb-4">
+                                <i data-lucide="brain" class="h-10 w-10 text-pink-400"></i>
+                                <span class="text-xs bg-pink-500/10 text-pink-400 px-2 py-1 rounded font-mono">PRODUCTION</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">SaiBrain</h3>
+                            <p class="text-gray-350 text-sm leading-relaxed mb-6">
+                                A highly structured AI knowledge repository representing personal engineering expertise, historical production incident scenarios, and configurations to facilitate rapid context injection for developer agents.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 text-xs font-mono border-t border-white/5 pt-4">
+                            <span class="text-pink-400">#Context-Injection</span>
+                            <span class="text-pink-400">#AgentiveDB</span>
+                            <span class="text-pink-400">#StructuredKnowledge</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-8 rounded-xl border border-white/5 mt-10">
+                    <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                        <i data-lucide="zap" class="text-yellow-400 h-5 w-5"></i> Today's Focus Areas
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs font-mono text-gray-300">
+                        <p class="flex items-center gap-2 bg-navy-950 p-3 rounded"><i data-lucide="terminal" class="text-cyan-400 h-4 w-4"></i> Local LLM Infrastructure</p>
+                        <p class="flex items-center gap-2 bg-navy-950 p-3 rounded"><i data-lucide="shield-alert" class="text-cyan-400 h-4 w-4"></i> Cybersecurity Automation</p>
+                        <p class="flex items-center gap-2 bg-navy-950 p-3 rounded"><i data-lucide="git-merge" class="text-cyan-400 h-4 w-4"></i> Multi-Agent Orchestration</p>
+                        <p class="flex items-center gap-2 bg-navy-950 p-3 rounded"><i data-lucide="workflow" class="text-cyan-400 h-4 w-4"></i> Identity Access Automation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
+                    <span class="text-cyan-400 mr-3">05.</span> ENDORSEMENTS
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Norman Aaron -->
+                    <div class="glass p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-300 text-sm italic mb-6">"I've worked with Sai in quite a number of projects and efforts, and is highly sought after for his amazing middleware skill, knowledge and expertise. He is a leader in his field. He has one of the best work ethic I've ever seen..."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center font-bold text-sm text-white">NA</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Norman Aaron</h4>
+                                <p class="text-gray-500 text-xs">Application Infrastructure Engineering</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Abdul Mohammed -->
+                    <div class="glass p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-300 text-sm italic mb-6">"Sai is the most hardworking person I have ever seen. He is smart and quick on problem solutions. His vast spectrum of knowledge on different middleware technologies makes him one of the best resource."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center font-bold text-sm text-white">AM</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Abdul Mohammed</h4>
+                                <p class="text-gray-500 text-xs">Software Engineer III at Bank of America</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <!-- Mike Bell -->
+                    <div class="glass p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-300 text-sm italic mb-6">"Sai was among the most knowledgeable and experienced Middleware Engineers I've worked with since 2011. Always happy to help out and go the extra mile. He knows Middleware inside and out."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center font-bold text-sm text-white">MB</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Mike Bell</h4>
+                                <p class="text-gray-500 text-xs">VP, eCommerce & Online Banking Infrastructure Architect</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Douglas Grice -->
+                    <div class="glass p-6 rounded-xl border border-white/5">
+                        <p class="text-gray-300 text-sm italic mb-6">"I've worked with Sai for 15+ years. Always willing to help people out no matter how busy he is. His knowledge of the middleware products we worked on is second to none."</p>
+                        <div class="flex items-center gap-3">
+                            <div class="h-10 w-10 bg-slate-700 rounded-full flex items-center justify-center font-bold text-sm text-white">DG</div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Douglas Grice</h4>
+                                <p class="text-gray-500 text-xs">System Engineer at Bank of America</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Philosophy -->
+        <section id="philosophy" class="py-20 px-4 bg-navy-950/80">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-12 flex items-center font-mono">
+                    <span class="text-cyan-400 mr-3">05.</span> PHILOSOPHY_CORES
+                    <div class="h-px bg-slate-800 flex-grow ml-6"></div>
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass p-6 rounded-lg border-t-4 border-cyan-500">
+                        <h4 class="font-bold text-white mb-2 font-mono text-sm">// AUTOMATE EVERYTHING</h4>
+                        <p class="text-gray-400 text-xs italic">"Technology should eliminate repetitive work. Automation should replace manual processes whenever possible."</p>
+                    </div>
+                    <div class="glass p-6 rounded-lg border-t-4 border-emerald-500">
+                        <h4 class="font-bold text-white mb-2 font-mono text-sm">// DEFAULT SECURE</h4>
+                        <p class="text-gray-400 text-xs italic">"Security must be built into systems architecturally, never retrofitted as an afterthought."</p>
+                    </div>
+                    <div class="glass p-6 rounded-lg border-t-4 border-purple-500">
+                        <h4 class="font-bold text-white mb-2 font-mono text-sm">// DOCUMENT TO SCALE</h4>
+                        <p class="text-gray-400 text-xs italic">"Clear, precise system documentation acts as a force multiplier for engineering groups."</p>
+                    </div>
+                    <div class="glass p-6 rounded-lg border-t-4 border-pink-500">
+                        <h4 class="font-bold text-white mb-2 font-mono text-sm">// AI AGENT INTERFACES</h4>
+                        <p class="text-gray-400 text-xs italic">"AI is becoming the new programming interface. Engineers who learn to orchestrate agents build 10x faster."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certs & Education -->
+        <section class="py-20 px-4">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Certs -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-8 flex items-center font-mono">
+                        <span class="text-cyan-400 mr-3">06.</span> CERTIFICATES
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-red-500">
+                            <i data-lucide="shield" class="h-8 w-8 text-red-500"></i>
+                            <div>
+                                <h4 class="text-white font-bold">CompTIA CySA+</h4>
+                                <p class="text-gray-400 text-xs font-mono">Cybersecurity Analyst</p>
+                            </div>
+                        </div>
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-cyan-500">
+                            <i data-lucide="cloud" class="h-8 w-8 text-cyan-500"></i>
+                            <div>
+                                <h4 class="text-white font-bold">AWS Certified Solutions Architect</h4>
+                                <p class="text-gray-400 text-xs font-mono">Associate (SAA-C03)</p>
+                            </div>
+                        </div>
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-cyan-400">
+                            <i data-lucide="cloud" class="h-8 w-8 text-cyan-400"></i>
+                            <div>
+                                <h4 class="text-white font-bold">AWS Certified Cloud Practitioner</h4>
+                                <p class="text-gray-400 text-xs font-mono">(CLF-C02)</p>
+                            </div>
+                        </div>
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-blue-500">
+                            <i data-lucide="database" class="h-8 w-8 text-blue-500"></i>
+                            <div>
+                                <h4 class="text-white font-bold">Microsoft Certified: Azure Fundamentals</h4>
+                                <p class="text-gray-400 text-xs font-mono">(AZ-900)</p>
+                            </div>
+                        </div>
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-blue-400">
+                            <i data-lucide="database" class="h-8 w-8 text-blue-400"></i>
+                            <div>
+                                <h4 class="text-white font-bold">Microsoft Certified: Azure Data Fundamentals</h4>
+                                <p class="text-gray-400 text-xs font-mono">(DP-900)</p>
+                            </div>
+                        </div>
+                        <div class="glass p-4 rounded-lg flex items-center gap-4 border-l-4 border-slate-500">
+                            <i data-lucide="box" class="h-8 w-8 text-slate-500"></i>
+                            <div>
+                                <h4 class="text-white font-bold">IBM WebSphere Administration</h4>
+                                <p class="text-gray-400 text-xs font-mono">Enterprise Middleware Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education -->
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-8 flex items-center font-mono">
+                        <span class="text-cyan-400 mr-3">07.</span> EDUCATION
+                    </h2>
+                    <div class="space-y-6">
+                        <div class="glass p-6 rounded-xl border border-white/5 relative overflow-hidden">
+                            <div class="absolute right-0 top-0 opacity-10 p-4">
+                                <i data-lucide="graduation-cap" class="h-16 w-16 text-cyan-400"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-1">Master's Degree</h3>
+                            <h4 class="text-cyan-400 font-mono text-sm mb-4">Engineering</h4>
+                            <p class="text-gray-400 text-sm">Louisiana Tech University</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Terminal -->
+        <section id="terminal" class="py-20 px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center font-mono">saivoora-cli.sh</h2>
+                <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">Query the system database directly via simulated shell commands.</p>
+
+                <div class="rounded-xl overflow-hidden shadow-2xl border border-slate-700 bg-[#070b14] font-mono text-sm">
+                    <div class="bg-[#1f293d] px-4 py-2 flex items-center gap-2 border-b border-black">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <div class="flex-grow text-center text-gray-400 text-xs font-sans">sqlite3 — saivoora@middleware-prod</div>
+                    </div>
+
+                    <div class="p-4 h-[400px] overflow-y-auto scroll-smooth" id="terminal-body" onclick="document.getElementById('cmd-input').focus()">
+                        <div class="text-gray-450 mb-4">
+                            Welcome to the Sai V. Interactive Brain Dump Shell.<br>
+                            Database: /var/prod/knowledge.db (Connected)<br>
+                            Type 'help' to review available database queries.<br>
+                        </div>
+
+                        <div id="terminal-history"></div>
+
+                        <div class="flex items-center text-cyan-450 mt-2">
+                            <span class="mr-2 text-cyan-400">[saivoora@admin /]$</span>
+                            <input type="text" id="cmd-input" class="flex-grow bg-transparent border-none outline-none text-white font-mono" autocomplete="off" spellcheck="false">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/5 bg-navy-950/60 py-12 px-4 mt-20">
+            <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h3 class="font-bold text-white font-mono text-xl mb-2">SAI V.</h3>
+                    <p class="text-gray-400 text-sm">Enterprise Cybersecurity, SRE, and AI Orchestration</p>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-500 text-sm mb-3">© 2026 Sai V. All rights reserved.</p>
+                    <div class="text-xs font-mono text-cyan-500/50">STATUS: AGENTIC_STABILITY // TRUST_EVAL: SUCCESS</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Force scroll to top on load to prevent browser jump memory
+        window.history.scrollRestoration = 'manual';
+        window.onload = function() {
+            window.scrollTo(0, 0);
+        };
+
+        // Animate numbers
+        const animateValue = (id, start, end, duration) => {
+            let current = start;
+            const range = end - start;
+            const increment = end > start ? 1 : -1;
+            const stepTime = Math.abs(Math.floor(duration / range));
+            const obj = document.getElementById(id);
+            const timer = setInterval(() => {
+                current += increment;
+                obj.innerHTML = current + (id === 'count-exp' || id === 'count-boa' ? '+' : id === 'count-mig' ? '%' : '');
+                if (current == end) clearInterval(timer);
+            }, stepTime);
+        };
+
+        // Typewriter Effect
+        const typeWriter = (text, i, fnCallback) => {
+            if (i < (text.length)) {
+                document.getElementById("typewriter").innerHTML = text.substring(0, i+1) + '<span aria-hidden="true" class="cursor-blink border-r-2 border-cyan-400 ml-1"></span>';
+                setTimeout(() => typeWriter(text, i + 1, fnCallback), 60);
+            } else if (typeof fnCallback == 'function') {
+                setTimeout(fnCallback, 2500);
+            }
+        }
+
+        const startTypeWriter = () => {
+            const list = [
+                "> SRE & Production Infrastructure Specialist",
+                "> Cybersecurity & Identity Access Architect",
+                "> AI Engineer & Multi-Agent Builder"
+            ];
+            let listIdx = 0;
+            const rotate = () => {
+                document.getElementById("typewriter").innerHTML = '';
+                typeWriter(list[listIdx], 0, () => {
+                    listIdx = (listIdx + 1) % list.length;
+                    setTimeout(rotate, 500);
+                });
+            };
+            rotate();
+        }
+        startTypeWriter();
+
+        // Reveal stats immediately
+        let countersTriggered = false;
+        setTimeout(() => {
+            if(!countersTriggered) {
+                animateValue("count-exp", 0, 20, 1500);
+                animateValue("count-boa", 0, 18, 1500);
+                animateValue("count-mig", 0, 100, 2000); // 100% SLA deadline delivery
+                animateValue("count-cert", 0, 6, 1200);   // 6 certs
+                countersTriggered = true;
+            }
+        }, 500);
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Terminal Simulator Logic
+        const cmdInput = document.getElementById('cmd-input');
+        const termHistory = document.getElementById('terminal-history');
+        const termBody = document.getElementById('terminal-body');
+
+        const shellCommands = {
+            'help': 'Available queries:\n  help         - Show system queries\n  about        - Profile summary\n  skills       - Print competency data\n  experience   - Work tenure overview\n  ai-projects  - Query Agent deployments\n  certs        - Certification checklist\n  philosophy   - Engineering core standards\n  clear        - Clear console buffer',
+            'about': 'Sai V.\nIT Architect with 20+ years of enterprise experience.\nSupported critical banking infrastructures serving millions.\nHighlights: 18 years Bank of America support; 100% on-time project delivery history.',
+            'skills': 'Security  : IAM, Access Audits, Provisioning, GPOs, OAuth2, LDAP\nMiddleware: WebSphere, JBoss EAP, Tomcat, IHS, Apache, AMQ, Solr\nSRE/Ops   : Incident response, GC profiling, Prometheus monitoring\nDev/Cloud : Java 17, Spring Boot, WebFlux, AWS, Azure, Ansible, Docker\nAI Eng.   : Autonomous multi-agent pipelines, Claude SDK, n8n',
+            'experience': '[JEA] Senior Security Analyst - IAM (2025-Present)\n[Truist] Middleware/Vulnerability Analyst (2025-2025)\n[Digital Risk] JBoss Cluster Administrator (2024-2025)\n[Bank of America] Infrastructure Engineer / VP (2007-2024, ~18 years)',
+            'ai-projects': 'CREATOROS: AI orchestrated media synthesis & multi-model content processing platform.\nSAIBRAIN: Personal knowledge base mapping enterprise architectural memory for LLM context injection.',
+            'certs': '1. CompTIA CySA+ (Cybersecurity Analyst)\n2. AWS Solutions Architect – Associate (SAA-C03)\n3. AWS Certified Cloud Practitioner (CLF-C02)\n4. Azure Fundamentals (AZ-900)\n5. Azure Data Fundamentals (DP-900)\n6. IBM WebSphere Administration',
+            'philosophy': '• "Automation replaces manual overhead."\n• "Secure architecturally from checkpoint zero."\n• "AI agents represent the next programming paradigm."'
+        };
+
+        cmdInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const cmd = cmdInput.value.trim().toLowerCase();
+                if(!cmd) return;
+
+                const cmdEcho = document.createElement('div');
+                cmdEcho.className = 'text-white mt-2';
+                cmdEcho.innerHTML = `<span class="text-cyan-400">[saivoora@admin /]$</span> ${cmdInput.value}`;
+                termHistory.appendChild(cmdEcho);
+
+                const response = document.createElement('div');
+                response.className = 'text-gray-300 terminal-output mt-1';
+
+                if (cmd === 'clear') {
+                    termHistory.innerHTML = '';
+                } else if (shellCommands[cmd]) {
+                    response.innerText = shellCommands[cmd];
+                    termHistory.appendChild(response);
+                } else {
+                    response.innerText = `Command not recognized. Type 'help' to audit options.`;
+                    termHistory.appendChild(response);
+                }
+
+                cmdInput.value = '';
+                termBody.scrollTop = termBody.scrollHeight;
+            }
+        });
+
+        // Neural Network Visual Background Canvas
+        const canvas = document.getElementById('neural-bg');
+        const ctx = canvas.getContext('2d');
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const dots = [];
+        for (let i = 0; i < 40; i++) {
+            dots.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                vx: (Math.random() - 0.5) * 0.4,
+                vy: (Math.random() - 0.5) * 0.4
+            });
+        }
+
+        const animate = () => {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#06b6d4';
+            ctx.strokeStyle = 'rgba(6, 182, 212, 0.05)';
+            ctx.lineWidth = 1;
+
+            dots.forEach(d => {
+                d.x += d.vx;
+                d.y += d.vy;
+
+                if (d.x < 0 || d.x > width) d.vx *= -1;
+                if (d.y < 0 || d.y > height) d.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(d.x, d.y, 2, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            for (let i = 0; i < dots.length; i++) {
+                for (let j = i + 1; j < dots.length; j++) {
+                    const dist = Math.hypot(dots[i].x - dots[j].x, dots[i].y - dots[j].y);
+                    if (dist < 150) {
+                        ctx.beginPath();
+                        ctx.moveTo(dots[i].x, dots[i].y);
+                        ctx.lineTo(dots[j].x, dots[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+    </script>
+</body>
+</html>
